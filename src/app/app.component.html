@@ -1,34 +1,109 @@
-<div id="kanban">
-    <dx-scroll-view
-        class="scrollable-board"
-        direction="horizontal"
-        showScrollbar="always">
-        <dx-sortable
-            class="sortable-lists"
-            itemOrientation="horizontal"
-            handle=".list-title"
-            (onReorder)="onListReorder($event)">
-            <div class="list" *ngFor="let list of lists; let listIndex = index">
-                <div class="list-title dx-theme-text-color">{{statuses[listIndex]}}</div>
-                <dx-scroll-view
-                    class="scrollable-list"
-                    direction="vertical"
-                    showScrollbar="always">
-                    <dx-sortable
-                        class="sortable-cards"
-                        group="cardsGroup"
-                        [data]="list"
-                        (onDragStart)="onTaskDragStart($event)"
-                        (onReorder)="onTaskDrop($event)"
-                        (onAdd)="onTaskDrop($event)">
-                        <div class="card dx-card dx-theme-text-color dx-theme-background-color" *ngFor="let task of list">
-                            <div class="card-priority" [ngClass]="'priority-' + task.Task_Priority"></div>
-                            <div class="card-subject">{{task.Task_Subject}}</div>
-                            <div class="card-assignee">{{employees[task.Task_Assigned_Employee_ID]}}</div>
-                        </div>
-                    </dx-sortable>
-                </dx-scroll-view>
-            </div>
-        </dx-sortable>
-    </dx-scroll-view>
+<div class="control-section">
+    <div class="content-wrapper">
+        <ejs-kanban #kanbanObj keyField='Status' [dataSource]='kanbanData' [cardSettings]='cardSettings'
+            (actionComplete)="OnActionComplete($event)">
+            <e-columns>
+                <e-column headerText='Mới' keyField='Open' allowToggle='true'></e-column>
+                <e-column headerText='Đang xử lý' keyField='InProgress' allowToggle='true'></e-column>
+                <e-column headerText='Đã xử lý' keyField='Testing' allowToggle='true'></e-column>
+                <e-column headerText='Đóng' keyField='Close' allowToggle='true'></e-column>
+            </e-columns>
+        </ejs-kanban>
+    </div>
 </div>
+<style>
+    .e-kanban .e-card-footer-css {
+        align-self: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        height: 16px;
+        width: 16px;
+        margin-right: 8px;
+    }
+
+    .e-kanban .e-improvement {
+        background-image: url(https://syncfusion.atlassian.net/secure/viewavatar?size=medium&avatarId=15507&avatarType=issuetype);
+    }
+
+    .e-kanban .e-story {
+        background-image: url(https://syncfusion.atlassian.net/secure/viewavatar?size=medium&avatarId=15515&avatarType=issuetype);
+    }
+
+    .e-kanban .e-epic {
+        background-image: url(https://syncfusion.atlassian.net/secure/viewavatar?size=medium&avatarId=15507&avatarType=issuetype);
+    }
+
+    .e-kanban .e-bug {
+        background-image: url(https://syncfusion.atlassian.net/secure/viewavatar?size=medium&avatarId=15503&avatarType=issuetype);
+    }
+
+    .e-kanban .e-others {
+        background-image: url(https://syncfusion.atlassian.net/images/icons/issuetypes/documentation.png);
+    }
+
+    .e-kanban .e-low {
+        margin-right: auto;
+        background-image: url(https://syncfusion.atlassian.net/images/icons/priorities/trivial.svg);
+    }
+
+    .e-kanban .e-high {
+        margin-right: auto;
+        background-image: url(https://syncfusion.atlassian.net/images/icons/priorities/major.svg);
+    }
+
+    .e-kanban .e-critical {
+        margin-right: auto;
+        background-image: url(https://syncfusion.atlassian.net/images/icons/priorities/critical.svg);
+    }
+
+    .e-kanban .e-release {
+        margin-right: auto;
+        background-image: url(https://syncfusion.atlassian.net/images/icons/priorities/critical.svg);
+    }
+
+    .e-kanban .e-normal {
+        margin-right: auto;
+        background-image: url(https://syncfusion.atlassian.net/images/icons/priorities/minor.svg);
+    }
+
+    .e-kanban .e-nancy-davloio {
+        background-image: url(./assets/kanban/images/Nancy%20Davloio.png);
+    }
+
+    .e-kanban .e-andrew-fuller {
+        background-image: url(./assets/kanban/images/Andrew%20Fuller.png);
+    }
+
+    .e-kanban .e-janet-leverling {
+        background-image: url(./assets/kanban/images/Janet%20Leverling.png);
+    }
+
+    .e-kanban .e-steven-walker {
+        background-image: url(./assets/kanban/images/Steven%20walker.png);
+    }
+
+    .e-kanban .e-michael-suyama {
+        background-image: url(./assets/kanban/images/Michael%20Suyama.png);
+    }
+
+    .e-kanban .e-robert-king {
+        background-image: url(./assets/kanban/images/Robert%20King.png);
+    }
+
+    .e-kanban .e-margaret-hamilt {
+        background-image: url(./assets/kanban/images/Margaret%20hamilt.png);
+    }
+
+    .e-kanban .e-nancy-davloio,
+    .e-kanban .e-andrew-fuller,
+    .e-kanban .e-janet-leverling,
+    .e-kanban .e-steven-walker,
+    .e-kanban .e-michael-suyama,
+    .e-kanban .e-robert-king,
+    .e-kanban .e-margaret-hamilt {
+        border-radius: 72px;
+        height: 24px;
+        width: 24px;
+    }
+</style>

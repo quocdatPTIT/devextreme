@@ -20,6 +20,7 @@
     "@angular/platform-browser": "~10.1.1",
     "@angular/platform-browser-dynamic": "~10.1.1",
     "@angular/router": "~10.1.1",
+    "@syncfusion/ej2-angular-kanban": "^18.3.47",
     "devextreme": "20.2.3",
     "devextreme-angular": "20.2.3",
     "primeflex": "^2.0.0",

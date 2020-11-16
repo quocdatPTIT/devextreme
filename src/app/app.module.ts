@@ -1,16 +1,25 @@
-import { NgModule } from '@angular/core';
+import { KanbanAllModule } from '@syncfusion/ej2-angular-kanban';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { CommonModule } from '@angular/common';
+
 import { BrowserModule } from '@angular/platform-browser';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { DxScrollViewModule } from 'devextreme-angular/ui/scroll-view';
-import { DxSortableModule } from 'devextreme-angular/ui/sortable';
+
+import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 @NgModule({
-  imports: [BrowserModule, DxScrollViewModule, DxSortableModule],
   declarations: [AppComponent],
+  imports: [
+    CommonModule,
+    KanbanAllModule,
+    ReactiveFormsModule,
+    FormsModule,
+    BrowserModule],
+  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
-
+export class AppModule { }
 platformBrowserDynamic().bootstrapModule(AppModule);
-
